@@ -1,7 +1,5 @@
-# Modify this file to make it your own :-)
-
 variable "app_prefix" {
-  default = "gardos"
+  default = "exam"
 }
 
 variable "pipeline_name" {
