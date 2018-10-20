@@ -12,7 +12,7 @@ jobs:
     params:
       app_name: ((heroku_app_name))
       heroku_email: ((heroku_email))
-      heroku_api_token: ((heroku_api_key))
+      heroku_api_key: ((heroku_api_key))
 
 - name: infra
   plan:
