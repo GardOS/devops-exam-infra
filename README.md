@@ -11,8 +11,12 @@ Concource: https://raw.githubusercontent.com/starkandwayne/concourse-tutorial/ma
 
 ### Cmd:
 
-`fly -t devops-exam login --concourse-url http://127.0.0.1:8080 -u admin -p admin`\
-`fly -t devops-exam set-pipeline -p exam-pipeline -c concourse/pipeline.yml -l credentials.yml`\
-`fly -t devops-exam unpause-pipeline -p exam-pipeline`\
-`fly -t devops-exam destroy-pipeline -p exam-pipeline`\
-`fly -t devops-exam logout`
+fly -t devops-exam login --concourse-url http://127.0.0.1:8080 -u admin -p admin
+
+fly -t devops-exam set-pipeline -p exam-pipeline -c concourse/pipeline.yml -l credentials.yml
+
+fly -t devops-exam unpause-pipeline -p exam-pipeline
+
+fly -t devops-exam destroy-pipeline -p exam-pipeline
+
+fly -t devops-exam logout
