@@ -12,7 +12,7 @@ jobs:
     params:
       app_name: ((heroku_app_name))
       heroku_email: ((heroku_email))
-      heroku_api_key: ((heroku_api_key))
+      heroku_api_token: ((heroku_api_key))
 
 - name: infra
   plan:
@@ -43,6 +43,7 @@ resources:
       uri: git@github.com:GardOS/devops-exam-app.git
       branch: master
       private_key: ((deploy_key_app))
+# Replace with your own repository
 - name: devops-exam-infra
   type: git
   source:
