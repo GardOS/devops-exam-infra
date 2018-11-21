@@ -7,7 +7,6 @@ jobs:
       - task: mvn_build
         file: devops-exam-infra/concourse/java/task.yml
         input_mapping: { source: devops-exam-app }
-
       - task: push_to_heroku
         file: devops-exam-infra/concourse/heroku/push_master_to_heroku.yml
         input_mapping: { source: devops-exam-app }
@@ -15,25 +14,24 @@ jobs:
           app_name: ((heroku_app_name))
           heroku_email: ((heroku_email))
           heroku_api_key: ((heroku_api_key))
-
-- name: infra
-  plan:
-  - aggregate:
-    - get: devops-exam-infra
-  - task: apply
-    file: devops-exam-infra/concourse/terraform/task.yml
-    input_mapping: {source: devops-exam-infra}
-    params:
-      github_token: ((github_token))
-      heroku_api_key: ((heroku_api_key))
-      statuscake_api_key: ((statuscake_api_key))
-      command: apply
-      directories: |
-          terraform
-  - put: devops-exam-infra
-    params:
-      repository: with-state
-      rebase: true
+  - name: infra
+    plan:
+      - aggregate:
+          - get: devops-exam-infra
+      - task: apply
+        file: devops-exam-infra/concourse/terraform/task.yml
+        input_mapping: { source: devops-exam-infra }
+        params:
+          github_token: ((github_token))
+          heroku_api_key: ((heroku_api_key))
+          statuscake_api_key: ((statuscake_api_key))
+          command: apply
+          directories: |
+            terraform
+      - put: devops-exam-infra
+        params:
+          repository: with-state
+          rebase: true
 
 resources:
   - name: devops-exam-app
