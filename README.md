@@ -7,7 +7,7 @@ Concource: https://raw.githubusercontent.com/starkandwayne/concourse-tutorial/ma
 - StatusCake: https://app.statuscake.com/User.php. Key.
 - Github token: https://github.com/settings/tokens/new. Scope: repo + admin:repo_hook
 - 2 deploy keypairs. Generate, then add to repo. infra + app. Allow write. https://developer.github.com/v3/guides/managing-deploy-keys/#deploy-keys
-- Heroku: https://dashboard.heroku.com/account. API Key
+- Heroku: https://dashboard.heroku.com/account. API Key. Credit card: https://dashboard.heroku.com/account/billing
 
 ### Cmd:
 
