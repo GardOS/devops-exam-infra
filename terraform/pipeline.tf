@@ -19,20 +19,20 @@ resource "heroku_app" "production" {
   region = "eu"
 }
 
-# Database
-resource "heroku_addon" "db_ci" {
+# Hosted Graphite
+resource "heroku_addon" "hostedgraphite_ci" {
   app  = "${heroku_app.ci.name}"
-  plan = "heroku-postgresql:hobby-dev"
+  plan = "hostedgraphite:free"
 }
 
-resource "heroku_addon" "db_stage" {
+resource "heroku_addon" "hostedgraphite_stage" {
   app  = "${heroku_app.staging.name}"
-  plan = "heroku-postgresql:hobby-dev"
+  plan = "hostedgraphite:free"
 }
 
-resource "heroku_addon" "db_prod" {
+resource "heroku_addon" "hostedgraphite_prod" {
   app  = "${heroku_app.production.name}"
-  plan = "heroku-postgresql:hobby-dev"
+  plan = "hostedgraphite:free"
 }
 
 # Coupling
