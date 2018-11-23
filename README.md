@@ -1,5 +1,7 @@
 ### DevOps infra for [App](https://github.com/GardOS/devops-exam-app)
 
+Exam: https://github.com/PGR301-2018/oppgave-eksamen
+
 Concource: https://raw.githubusercontent.com/starkandwayne/concourse-tutorial/master/docker-compose.yml
 
 ### Creds
