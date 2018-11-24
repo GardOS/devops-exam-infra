@@ -8,7 +8,7 @@ export CHECK="√"
 export M2_LOCAL_REPO=".m2"
 
 echo -e | pwd
-echo -e | ls -R | grep ":$" | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^/   /' -e 's/-/|/'
+find . | sed -e "s/[^-][^\/]*\// |/g" -e "s/|\([^ ]\)/|-\1/"
 mvn -f source/pom.xml install 
 echo -e "${GREEN}${CHECK} Maven install${NC}"
-echo -e | ls -R | grep ":$" | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^/   /' -e 's/-/|/'
+find . | sed -e "s/[^-][^\/]*\// |/g" -e "s/|\([^ ]\)/|-\1/"
