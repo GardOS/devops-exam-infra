@@ -11,4 +11,5 @@ echo -e | pwd
 find . | sed -e "s/[^-][^\/]*\// |/g" -e "s/|\([^ ]\)/|-\1/"
 mvn -f source/pom.xml install 
 echo -e "${GREEN}${CHECK} Maven install${NC}"
+cp -a source/. jar-file/
 find . | sed -e "s/[^-][^\/]*\// |/g" -e "s/|\([^ ]\)/|-\1/"
