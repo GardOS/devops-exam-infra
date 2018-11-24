@@ -1,4 +1,17 @@
 jobs:
+  - name: deploy-container
+    plan:
+      - aggregate:
+          - get: devops-exam-app
+            trigger: true
+          - get: devops-exam-infra
+            trigger: true
+      - task: mvn_build
+        file: devops-exam-infra/concourse/java/task.yml
+        input_mapping: { source: devops-exam-app }
+      - put: docker-image-app
+        params:
+          build: jar-file
   - name: deploy-app
     plan:
       - aggregate:
@@ -46,3 +59,9 @@ resources:
       uri: git@github.com:GardOS/devops-exam-infra.git
       branch: master
       private_key: ((deploy_key_infra))
+  - name: docker-image-app
+    type: docker-image
+    source:
+      repository: registry.heroku.com/((heroku_app_name))/web
+      username: ((heroku_email))
+      password: ((heroku_api_key))
