@@ -14,4 +14,4 @@ outputs:
   - name: jar-file
 
 run:
-  path: devops-exam-infra/concourse/java/task.sh
+  path: devops-exam-infra/concourse/java/java.sh

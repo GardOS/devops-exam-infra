@@ -1,22 +1,10 @@
 jobs:
-  - name: build
-    plan:
-      - aggregate:
-          - get: devops-exam-app
-            trigger: true
-          - get: devops-exam-infra
-      - task: mvn-build
-        file: devops-exam-infra/concourse/java/task.yml
-        input_mapping: { source: devops-exam-app }
-      - put: docker-image-app
-        params:
-          build: jar-file
   - name: infra
     plan:
       - aggregate:
           - get: devops-exam-infra
       - task: apply
-        file: devops-exam-infra/concourse/terraform/task.yml
+        file: devops-exam-infra/concourse/terraform/java.yml
         input_mapping: { source: devops-exam-infra }
         params:
           github_token: ((github_token))
@@ -29,6 +17,18 @@ jobs:
         params:
           repository: with-state
           rebase: true
+  - name: build
+    plan:
+      - aggregate:
+          - get: devops-exam-app
+            trigger: true
+          - get: devops-exam-infra
+      - task: mvn-build
+        file: devops-exam-infra/concourse/java/java.yml
+        input_mapping: { source: devops-exam-app }
+      - put: docker-image-app
+        params:
+          build: jar-file
   - name: deploy
     plan:
       - aggregate:
