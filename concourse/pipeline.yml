@@ -36,8 +36,12 @@ jobs:
         - get: docker-image-app
           trigger: true
           passed: [build]
-        - task: deploy-container
-          file: devops-exam-infra/concourse/heroku/deploy-container.yml
+      - task: deploy-container
+        file: devops-exam-infra/concourse/heroku/deploy-container.yml
+        params:
+          app_name: ((heroku_app_name))	
+          heroku_email: ((heroku_email))	
+          heroku_api_key: ((heroku_api_key))
 
 resources:
   - name: devops-exam-app
