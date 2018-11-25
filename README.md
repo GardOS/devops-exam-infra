@@ -26,8 +26,7 @@ fly -t devops-exam logout
 ### Notes
 
 ```
-docker build -t test --build-arg JAR_FILE=target/devops-exam-app-1.0-SNAPSHOT.jar .
-docker run -e JDBC_DATABASE_URL=jdbc:h2:mem:test -d -p 8000:8080 <containerId>
+docker build -t test .
 docker run -p 8081:8081 id
 
 heroku container:push web --arg JAR_FILE=target/devops-exam-app-1.0-SNAPSHOT.jar -a hidden-falls-51335
