@@ -10,7 +10,7 @@ Fullførte oppgaver:
 
 ## Applikasjon
 
-Applikasjonen er en Spring Boot applikasjon skrevet i Kotlin.
+Applikasjonen er en Spring Boot applikasjon skrevet i Kotlin og bygges med maven.
 Løsningen består av to APIer:
 
 - Greeting. Velkomstside.
@@ -20,9 +20,23 @@ Når det gjelder valg av logging har jeg valgt Logback, fordi den brukes default
 
 ## Infrastruktur
 
-### Hosted Graphite
+Applikasjonen hostes i Heroku i tre forskjellige miljøer: CI, Staging og Prod.
+![heroku.PNG](img/heroku.PNG)
+
+### Hosted Graphite + Grafana
+
+For hvert miljø så er en Hosted Graphite addon provisjonert. Hosted Graphite henter metrics fra samtlige endepunkter fra applikasjonen, hvor meter, timer og counter er blitt benyttet. Data samlet inn blir visualisert med Grafana.
+
+![grafana.PNG](img/grafana.PNG)
+
+### StatusCake
+
+For hvert miljø så er det satt opp en test i StatusCake som sjekker oppetid på applikasjonen.
+![statuscake.PNG](img/statuscake.PNG)
 
 ## Pipeline
+
+![pipeline.PNG](img/pipeline.PNG)
 
 ## Setup
 
@@ -54,3 +68,5 @@ variables.tf
 4. `fly -t devops-exam unpause-pipeline -p exam-pipeline`
 
 Når ferdig: `docker-compose down`
+
+## Merknader
