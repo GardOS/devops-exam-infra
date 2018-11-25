@@ -8,7 +8,7 @@ image_resource:
 
 params:
   heroku_email:
-  heroku_api_token:
+  heroku_api_key:
   app_name:
 
 run:
@@ -20,10 +20,10 @@ run:
       cat > /root/.netrc <<EOF
       machine api.heroku.com
           login ${heroku_email}
-          password ${heroku_api_token}
+          password ${heroku_api_key}
       machine git.heroku.com
           login ${heroku_email}
-          password ${heroku_api_token}
+          password ${heroku_api_key}
       EOF
-      export HEROKU_API_KEY=${heroku_api_token}
+      export HEROKU_API_KEY=${heroku_api_key}
       heroku container:release web -a ${app_name}
