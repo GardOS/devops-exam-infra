@@ -39,7 +39,7 @@ jobs:
       - task: deploy-container
         file: devops-exam-infra/concourse/heroku/deploy-container.yml
         params:
-          app_name: ((heroku_app_name))	
+          app_name: ((heroku_app_name))-ci
           heroku_email: ((heroku_email))	
           heroku_api_key: ((heroku_api_key))
 
@@ -59,6 +59,6 @@ resources:
   - name: docker-image-app
     type: docker-image
     source:
-      repository: registry.heroku.com/((heroku_app_name))/web
+      repository: registry.heroku.com/((heroku_app_name))-ci/web
       username: ((heroku_email))
       password: ((heroku_api_key))
