@@ -46,13 +46,13 @@ resources:
   - name: devops-exam-app
     type: git
     source:
-      uri: git@github.com:GardOS/devops-exam-app.git
+      uri: ((github_app_repo))
       branch: master
       private_key: ((deploy_key_app))
   - name: devops-exam-infra
     type: git
     source:
-      uri: git@github.com:GardOS/devops-exam-infra.git
+      uri: ((github_infra_repo))
       branch: master
       private_key: ((deploy_key_infra))
   - name: docker-image-app

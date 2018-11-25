@@ -1,3 +1,3 @@
 provider "heroku" {
-  email = "gardo1506@gmail.com"
+  email = "${var.heroku_email}"
 }
