@@ -8,6 +8,7 @@ jobs:
         input_mapping: { source: devops-exam-infra }
         params:
           github_token: ((github_token))
+          heroku_api_key: ((heroku_api_key))	
           statuscake_api_key: ((statuscake_api_key))
           command: apply
           directories: |
