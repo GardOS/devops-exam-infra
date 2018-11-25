@@ -1,32 +1,16 @@
 jobs:
-  - name: deploy-container
+  - name: build
     plan:
       - aggregate:
           - get: devops-exam-app
             trigger: true
           - get: devops-exam-infra
-            trigger: true
-      - task: mvn_build
+      - task: mvn-build
         file: devops-exam-infra/concourse/java/task.yml
         input_mapping: { source: devops-exam-app }
       - put: docker-image-app
         params:
           build: jar-file
-  - name: deploy-app
-    plan:
-      - aggregate:
-          - get: devops-exam-app
-          - get: devops-exam-infra
-      - task: mvn_build
-        file: devops-exam-infra/concourse/java/task.yml
-        input_mapping: { source: devops-exam-app }
-      - task: push_to_heroku
-        file: devops-exam-infra/concourse/heroku/push_master_to_heroku.yml
-        input_mapping: { source: devops-exam-app }
-        params:
-          app_name: ((heroku_app_name))
-          heroku_email: ((heroku_email))
-          heroku_api_key: ((heroku_api_key))
   - name: infra
     plan:
       - aggregate:
@@ -45,6 +29,15 @@ jobs:
         params:
           repository: with-state
           rebase: true
+  - name: deploy
+    plan:
+      - aggregate:
+        - get: devops-exam-infra
+        - get: docker-image-app
+          trigger: true
+          passed: [build]
+        - task: deploy-container
+          file: devops-exam-infra/concourse/heroku/deploy-container.yml
 
 resources:
   - name: devops-exam-app
