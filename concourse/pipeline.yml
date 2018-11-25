@@ -4,7 +4,7 @@ jobs:
       - aggregate:
           - get: devops-exam-infra
       - task: apply
-        file: devops-exam-infra/concourse/terraform/java.yml
+        file: devops-exam-infra/concourse/terraform/terraform.yml
         input_mapping: { source: devops-exam-infra }
         params:
           github_token: ((github_token))
