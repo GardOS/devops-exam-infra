@@ -2,13 +2,21 @@
 
 ## Oppgave
 
-- Basis pipeline (10 poeng)
-- Docker (20 poeng)
-- Overvåkning, varsling og Metrics (20 poeng)
+Fullførte oppgaver:
+
+- Basis pipeline
+- Docker
+- Overvåkning, varsling og Metrics
 
 ## Applikasjon
 
-### Greeting + Api
+Applikasjonen er en Spring Boot applikasjon skrevet i Kotlin.
+Løsningen består av to APIer:
+
+- Greeting. Velkomstside.
+- Books. API for bøker, støtter CRUD-operasjoner.
+
+Når det gjelder valg av logging har jeg valgt Logback, fordi den brukes default av Spring Boot Starter. Siden default log-level i Spring Boot er `info` så har jeg satt ned log-level til debug for APIene, på grunn av at det meste logges til `debug`. Dette pga. lettere sensur.
 
 ## Infrastruktur
 
