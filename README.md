@@ -72,12 +72,14 @@ Pipeline er implementert i Concourse og har følgende steg:
 
 1. Start en [Concourse container](https://raw.githubusercontent.com/starkandwayne/concourse-tutorial/master/docker-compose.yml)
 2. Kjør følgende kommandoer:
-   - `fly -t devops-exam unpause-pipeline -p exam-pipeline`
    - `fly -t devops-exam login --concourse-url http://127.0.0.1:8080 -u admin -p admin`
    - `fly -t devops-exam set-pipeline -p exam-pipeline -c concourse/pipeline.yml -l credentials.yml`
+   - `fly -t devops-exam unpause-pipeline -p exam-pipeline`
 3. Gå til http://localhost:8080 og logg inn som: U: admin P: admin.
 4. Velg _infra_ og kjør bygg (+).
 5. Når infra er ferdig så kan _build_-jobben kjøres. Enten manuelt, eller ved å commite til app-repoet.
+6. Vent til jobbene har kjørt ferdig.
+7. Åpne appen i Heroku.
 
 ## Kjente feil:
 
