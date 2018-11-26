@@ -1,5 +1,5 @@
 variable "app_name" {
-  default = "exam" //Note: Should be the same as heroku_app_name in credentials.yml
+  default = "devops-exam" //Note: Should be the same as heroku_app_name in credentials.yml
 }
 
 variable "pipeline_name" {
