@@ -7,16 +7,28 @@ resource "heroku_pipeline" "pipeline" {
 resource "heroku_app" "ci" {
   name   = "${var.app_name}-ci"
   region = "eu"
+
+  config_vars {
+    GRAPHITE_HOST = "carbon.hostedgraphite.com"
+  }
 }
 
 resource "heroku_app" "staging" {
   name   = "${var.app_name}-staging"
   region = "eu"
+
+  config_vars {
+    GRAPHITE_HOST = "carbon.hostedgraphite.com"
+  }
 }
 
 resource "heroku_app" "production" {
   name   = "${var.app_name}-production"
   region = "eu"
+
+  config_vars {
+    GRAPHITE_HOST = "carbon.hostedgraphite.com"
+  }
 }
 
 # Hosted Graphite
