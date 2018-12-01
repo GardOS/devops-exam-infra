@@ -8,6 +8,8 @@ Fullførte oppgaver:
 - Docker
 - Overvåkning, varsling og Metrics
 
+Bonus: Caching av Maven ressurser
+
 ## Applikasjon
 
 Applikasjonen er en Spring Boot applikasjon skrevet i Kotlin og bygges med maven.
@@ -20,7 +22,7 @@ Når det gjelder valg av logging har jeg valgt Logback, fordi den brukes default
 
 ## Infrastruktur
 
-Applikasjonen hostes i Heroku i tre forskjellige miljøer: CI, Staging og Prod. På grunn av begrensinger i Heroku Container Registry så går det ikke å promotere applikasjonen til flere miljøer. Skulle man gjort dette så måtte man heller utvide pipelinen.  
+Applikasjonen hostes i Heroku i tre forskjellige miljøer: CI, Staging og Prod.
 ![heroku.PNG](img/heroku.PNG)
 
 ### Hosted Graphite + Grafana
@@ -85,4 +87,6 @@ Pipeline er implementert i Concourse og har følgende steg:
 
 ## Kjente feil:
 
-Error: Sporadisk så feiler Concourse i å hente image fra Docker Hub. Da er det bare å kjøre på nytt. ![error.PNG](img/error.PNG)
+- På grunn av begrensinger i Heroku Container Registry så går det ikke å promotere applikasjonen til flere miljøer. Skulle man gjort dette så måtte man heller utvide pipelinen.
+
+- Sporadisk så feiler Concourse i å hente image fra Docker Hub. Da er det bare å kjøre på nytt. ![error.PNG](img/error.PNG)
