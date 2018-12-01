@@ -13,3 +13,7 @@ variable "heroku_email" {
 variable "statuscake_email" {
   default = "gardo1506gmailcom" //Note: no "@" or "."
 }
+
+variable "graphite_host" {
+  default = "carbon.hostedgraphite.com" //Default URL for HG as Heroku addon
+}

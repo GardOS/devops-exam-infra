@@ -9,7 +9,7 @@ resource "heroku_app" "ci" {
   region = "eu"
 
   config_vars {
-    GRAPHITE_HOST = "carbon.hostedgraphite.com"
+    GRAPHITE_HOST = "${var.graphite_host}"
   }
 }
 
@@ -18,7 +18,7 @@ resource "heroku_app" "staging" {
   region = "eu"
 
   config_vars {
-    GRAPHITE_HOST = "carbon.hostedgraphite.com"
+    GRAPHITE_HOST = "${var.graphite_host}"
   }
 }
 
@@ -27,7 +27,7 @@ resource "heroku_app" "production" {
   region = "eu"
 
   config_vars {
-    GRAPHITE_HOST = "carbon.hostedgraphite.com"
+    GRAPHITE_HOST = "${var.graphite_host}"
   }
 }
 
