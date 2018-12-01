@@ -20,18 +20,20 @@ Når det gjelder valg av logging har jeg valgt Logback, fordi den brukes default
 
 ## Infrastruktur
 
-Applikasjonen hostes i Heroku i tre forskjellige miljøer: CI, Staging og Prod.
+Applikasjonen hostes i Heroku i tre forskjellige miljøer: CI, Staging og Prod. På grunn av begrensinger i Heroku Container Registry så går det ikke å promotere applikasjonen til flere miljøer. Skulle man gjort dette så måtte man heller utvide pipelinen.  
 ![heroku.PNG](img/heroku.PNG)
 
 ### Hosted Graphite + Grafana
 
 For hvert miljø så er en Hosted Graphite addon provisjonert. Hosted Graphite henter metrics fra samtlige endepunkter fra applikasjonen, hvor meter, timer og counter er blitt benyttet. Data samlet inn blir visualisert med Grafana.
 
+På grunn av begrensinger i betalingsplanen så benytter koden seg kun av et begrenset antall metrics. Det som har blitt prioritert har vært å logge når endepunktene benyttes og evt. feil eller uønsket oppførsel.
+
 ![grafana.PNG](img/grafana.PNG)
 
 ### StatusCake
 
-For hvert miljø så er det satt opp en test i StatusCake som sjekker oppetid på applikasjonen.
+For hvert miljø så er det satt opp en test i StatusCake som sjekker oppetid på applikasjonen. Hvis varsling via epost er ønsket, så kan man gå inn i den enkelte testen og sette opp en contact group manuelt.
 ![statuscake.PNG](img/statuscake.PNG)
 
 ## Pipeline
