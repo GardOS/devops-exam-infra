@@ -1,5 +1,7 @@
 # DevOps Exam
 
+### DevOps infra for [App](https://github.com/GardOS/devops-exam-app)
+
 ## Oppgave
 
 Fullførte oppgaver:
@@ -22,7 +24,7 @@ Når det gjelder valg av logging har jeg valgt Logback, fordi den brukes default
 
 ## Infrastruktur
 
-Applikasjonen hostes i Heroku i tre forskjellige miljøer: CI, Staging og Prod.
+Applikasjonen hostes i Heroku i tre forskjellige miljøer: CI, Staging og Prod. Miljøene har samme infrastruktur (environment parity)
 ![heroku.PNG](img/heroku.PNG)
 
 ### Hosted Graphite + Grafana
@@ -61,7 +63,7 @@ Pipeline er implementert i Concourse og har følgende steg:
 
 #### Konfigurasjoner
 
-1. Fork repo [devops-exam-infra](https://github.com/GardOS/devops-exam-infra) + [devops-exam-app](https://github.com/GardOS/devops-exam-app) TODO: Replace GardOS
+1. Fork repo [devops-exam-infra](https://github.com/GardOS/devops-exam-infra) + [devops-exam-app](https://github.com/GardOS/devops-exam-app)
 2. Opprett to SSH-nøkkelpar. Ett for infra, ett for app.
 3. Per repo: legg inn samsvarende public key som deploy key. ![github-deploy-key.PNG](img/github-deploy-key.PNG)
 4. Opprett/hent API-token + brukernavn for [Github](https://github.com/settings/tokens/new). Scope skal være: repo + admin:repo_hook. ![github-token.PNG](img/github-token.PNG)
@@ -71,6 +73,7 @@ Pipeline er implementert i Concourse og har følgende steg:
 8. Endre navn på credentials_example.yml til credentials.yml.
 9. Legg inn verdier i credentials.yml slik at det samsvarer med verdiene hentet i de tidligere stegene.
 10. Gjør det samme i terraform/variables.tf (navn er valgfritt).
+11. Commit og push endringer gjort i terraform/variables.tf
 
 #### Oppsett
 
@@ -88,5 +91,8 @@ Pipeline er implementert i Concourse og har følgende steg:
 ## Kjente feil:
 
 - På grunn av begrensinger i Heroku Container Registry så går det ikke å promotere applikasjonen til flere miljøer. Skulle man gjort dette så måtte man heller utvide pipelinen.
-
-- Sporadisk så feiler Concourse i å hente image fra Docker Hub. Da er det bare å kjøre på nytt. ![error.PNG](img/error.PNG)
+- Oppgaven har vært løst i Windows OS. Windows spiller ikke alltids helt på lag med Git når det gjelder tillatelser. Hvis du ser `Backend error: Exit status: 500 ... permission denied ...` i pipelinen så må `git update-index --chmod=+x script.sh` kjøres på shell-scriptene.
+- Under testing så forsøker koden å logge metrics til Hosted Graphite, og kaster exceptions som et resultat av det. Dette har ikke en innvirkning på resultatet av testene, men er dårlig praksis.
+- Ved opprettelse av pipeline så vil build-steget starte automatisk, denne vil feile grunnet manglende infrastruktur. Infra må kjøres først.
+- Sporadisk så feiler Heroku å binde appen til en port. Da er det bare å kjøre på nytt.
+- Sporadisk så feiler Concourse i å hente image fra Docker Hub. Da er det bare å kjøre på nytt. ![Error.PNG](img/Error.PNG)
