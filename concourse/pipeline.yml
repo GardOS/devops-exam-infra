@@ -28,7 +28,7 @@ jobs:
         input_mapping: { source: devops-exam-app }
       - put: docker-image-app
         params:
-          build: jar-file
+          build: app
   - name: deploy
     plan:
       - aggregate:

@@ -11,7 +11,7 @@ inputs:
   - name: devops-exam-infra
 
 outputs:
-  - name: jar-file
+  - name: app
 
 run:
   path: devops-exam-infra/concourse/java/java.sh
