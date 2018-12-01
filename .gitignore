@@ -1,5 +1,1 @@
-target/
-.idea
-*.iml
 credentials.yml
-.terraform
