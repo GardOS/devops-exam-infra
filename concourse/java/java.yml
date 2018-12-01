@@ -13,5 +13,8 @@ inputs:
 outputs:
   - name: app
 
+caches:
+  - path: .m2/
+
 run:
   path: devops-exam-infra/concourse/java/java.sh
