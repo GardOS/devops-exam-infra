@@ -2,7 +2,7 @@
 
 ### DevOps infra for [App](https://github.com/GardOS/devops-exam-app)
 
-## Oppgave
+## [Oppgave](exam/exam.md)
 
 Fullførte oppgaver:
 
